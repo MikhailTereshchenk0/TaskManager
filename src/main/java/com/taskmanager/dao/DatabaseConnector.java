@@ -17,7 +17,7 @@ public class DatabaseConnector implements AutoCloseable{
     private DatabaseConnector() {
         try {
             Properties properties = new Properties();
-            try (InputStream in = Files.newInputStream(Paths.get("/src/main/resources/config_db.properties"))) {
+            try (InputStream in = Files.newInputStream(Paths.get("/Users/mikhail/Documents/IdeaProjects/TaskManager/src/main/resources/config_db.properties"))) {
                 properties.load(in);
             }
             String URL = properties.getProperty("URL");

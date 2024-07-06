@@ -6,7 +6,7 @@
 <body>
 <h1>Add task</h1>
 
-<form action="main" method="post">
+<form action="addtask" method="post">
     <label for="title">Title:</label>
     <input type="text" name="title" id="title" required>
 
@@ -17,5 +17,3 @@
 </form>
 </body>
 </html>
-
-

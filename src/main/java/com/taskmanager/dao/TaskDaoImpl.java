@@ -19,8 +19,8 @@ public class TaskDaoImpl implements ITaskDao {
             statement.setString(2, task.getDescription());
             statement.executeUpdate();
         }
-        catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+        catch (SQLException | NullPointerException exception) {
+            exception.printStackTrace();
         }
     }
 }
