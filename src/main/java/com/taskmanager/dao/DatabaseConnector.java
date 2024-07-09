@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Objects;
@@ -21,6 +22,9 @@ public class DatabaseConnector implements AutoCloseable{
                 properties.load(in);
             }
             String URL = properties.getProperty("URL");
+
+            Driver driver = new com.mysql.jdbc.Driver();    //no suitable driver found for jdbc:mysql://localhost:3306
+            DriverManager.registerDriver(driver);       //
 
             this.connection = DriverManager.getConnection(URL, properties);
         }
