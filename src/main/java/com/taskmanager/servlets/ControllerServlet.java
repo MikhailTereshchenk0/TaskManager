@@ -2,10 +2,11 @@ package com.taskmanager.servlets;
 
 import com.taskmanager.commands.Command;
 import com.taskmanager.commands.AddTaskCommand;
+import com.taskmanager.commands.DisplayTasksCommand;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -20,6 +21,7 @@ public class ControllerServlet extends HttpServlet {
         super.init(config);
         commands = new HashMap<>();
         commands.put("addtask", new AddTaskCommand());
+        commands.put("tasks", new DisplayTasksCommand());
     }
 
     @Override
@@ -35,8 +37,7 @@ public class ControllerServlet extends HttpServlet {
         String view = command.execute(request, response);
 
         if (view != null) {
-            path = request.getContextPath() + view;
-            response.sendRedirect(path);
+            request.getRequestDispatcher(view).forward(request, response);
         }
         else {
             super.service(request, response);

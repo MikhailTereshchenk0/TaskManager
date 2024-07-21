@@ -8,7 +8,7 @@
 <h1><%= "Hello" %>
 </h1>
 <br/>
-<a href="tasklist.jsp">Task List</a>
+<a href="tasks">Task List</a>
 <a href="addtask.jsp">Add task</a>
 </body>
 </html>

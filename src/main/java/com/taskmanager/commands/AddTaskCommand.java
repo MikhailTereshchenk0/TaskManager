@@ -21,6 +21,6 @@ public class AddTaskCommand implements Command{
         //add to DB
         TaskDaoImpl taskDao = new TaskDaoImpl();
         taskDao.create(task);
-        return "/tasklist.jsp";
+        return "/index.jsp";
     }
 }
