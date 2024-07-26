@@ -12,6 +12,7 @@ public class TaskDaoImpl implements ITaskDao {
     private static final String SQL_CREATE_TASK = "INSERT INTO task_manager_db.Tasks (Title, Description)" +
             "VALUES (?, ?)";
     private static final String SQL_FIND_ALL = "SELECT * FROM task_manager_db.Tasks;";
+    private static final String SQL_DELETE_TASK = "DELETE FROM task_manager_db.Tasks WHERE Id = ?";
     private final DatabaseConnector connection = DatabaseConnector.getInstance();
 
     public TaskDaoImpl() {
@@ -45,9 +46,22 @@ public class TaskDaoImpl implements ITaskDao {
         return tasks;
     }
 
+    @Override
+    public void delete(String id) {
+        try{
+            Connection con = connection.getConnection();
+            PreparedStatement statement = con.prepareStatement(SQL_DELETE_TASK);
+            statement.setString(1, id);
+            statement.executeUpdate();
+        }
+        catch (SQLException | NullPointerException exception) {
+            exception.printStackTrace();
+        }
+    }
+
     //
     public Task getTask (ResultSet resultSet) throws SQLException {
         //return Task.builder().title(resultSet.getString("Title")).build();
-        return new Task(resultSet.getString("Title"), resultSet.getString("Description"));
+        return new Task(resultSet.getString("Id"), resultSet.getString("Title"), resultSet.getString("Description"));
     }
 }

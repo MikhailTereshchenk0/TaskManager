@@ -2,6 +2,7 @@ package com.taskmanager.servlets;
 
 import com.taskmanager.commands.Command;
 import com.taskmanager.commands.AddTaskCommand;
+import com.taskmanager.commands.DeleteTaskCommand;
 import com.taskmanager.commands.DisplayTasksCommand;
 
 import java.io.*;
@@ -22,6 +23,7 @@ public class ControllerServlet extends HttpServlet {
         commands = new HashMap<>();
         commands.put("addtask", new AddTaskCommand());
         commands.put("tasks", new DisplayTasksCommand());
+        commands.put("deletetask", new DeleteTaskCommand());
     }
 
     @Override
@@ -37,7 +39,8 @@ public class ControllerServlet extends HttpServlet {
         String view = command.execute(request, response);
 
         if (view != null) {
-            request.getRequestDispatcher(view).forward(request, response);
+            //request.getRequestDispatcher(view).forward(request, response);
+            response.sendRedirect(request.getContextPath() + view);
         }
         else {
             super.service(request, response);
