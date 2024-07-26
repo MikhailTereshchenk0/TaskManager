@@ -5,7 +5,7 @@
     <title>JSP - Task Manager</title>
 </head>
 <body>
-<h1><%= "Hello" %>
+<h1><%= "Home" %>
 </h1>
 <br/>
 <a href="tasks">Task List</a>

@@ -4,6 +4,7 @@
     <title>Add task</title>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
 <h1>Add task</h1>
 
 <form action="addtask" method="post">

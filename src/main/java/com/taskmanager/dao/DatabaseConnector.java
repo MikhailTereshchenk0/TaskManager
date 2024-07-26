@@ -23,7 +23,7 @@ public class DatabaseConnector implements AutoCloseable{
             }
             String URL = properties.getProperty("URL");
 
-            Driver driver = new com.mysql.jdbc.Driver();    //no suitable driver found for jdbc:mysql://localhost:3306
+            Driver driver = new com.mysql.cj.jdbc.Driver();    //no suitable driver found for jdbc:mysql://localhost:3306
             DriverManager.registerDriver(driver);       //
 
             this.connection = DriverManager.getConnection(URL, properties);
