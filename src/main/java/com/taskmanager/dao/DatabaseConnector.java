@@ -1,34 +1,27 @@
 package com.taskmanager.dao;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Objects;
-import java.util.Properties;
 
 public class DatabaseConnector implements AutoCloseable{
     private static DatabaseConnector instance;
     private Connection connection;
 
     private DatabaseConnector() {
+        String url = System.getenv("URL");
+        String user = System.getenv("user");
+        String password = System.getenv("password");
         try {
-            Properties properties = new Properties();
-            try (InputStream in = Files.newInputStream(Paths.get("/Users/mikhail/Documents/IdeaProjects/TaskManager/src/main/resources/config_db.properties"))) {
-                properties.load(in);
-            }
-            String URL = properties.getProperty("URL");
 
             Driver driver = new com.mysql.cj.jdbc.Driver();    //no suitable driver found for jdbc:mysql://localhost:3306
             DriverManager.registerDriver(driver);       //
 
-            this.connection = DriverManager.getConnection(URL, properties);
+            this.connection = DriverManager.getConnection(url, user, password);
         }
-        catch(SQLException | IOException exception) {
+        catch(SQLException exception) {
             exception.printStackTrace();
         }
     }
