@@ -9,10 +9,10 @@ import java.util.List;
 
 public class TaskDaoImpl implements ITaskDao {
 
-    private static final String SQL_CREATE_TASK = "INSERT INTO task_manager_db.Tasks (Title, Description)" +
+    private static final String SQL_CREATE_TASK = "INSERT INTO Tasks (Title, Description)" +
             "VALUES (?, ?)";
-    private static final String SQL_FIND_ALL = "SELECT * FROM task_manager_db.Tasks;";
-    private static final String SQL_DELETE_TASK = "DELETE FROM task_manager_db.Tasks WHERE Id = ?";
+    private static final String SQL_FIND_ALL = "SELECT * FROM Tasks;";
+    private static final String SQL_DELETE_TASK = "DELETE FROM Tasks WHERE Id = ?";
     private final DatabaseConnector connection = DatabaseConnector.getInstance();
 
     public TaskDaoImpl() {
@@ -62,6 +62,6 @@ public class TaskDaoImpl implements ITaskDao {
     //
     public Task getTask (ResultSet resultSet) throws SQLException {
         //return Task.builder().title(resultSet.getString("Title")).build();
-        return new Task(resultSet.getString("Id"), resultSet.getString("Title"), resultSet.getString("Description"));
+        return new Task(resultSet.getInt("Id"), resultSet.getString("Title"), resultSet.getString("Description"));
     }
 }
