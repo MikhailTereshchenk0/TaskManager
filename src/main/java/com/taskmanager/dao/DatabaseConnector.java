@@ -1,11 +1,14 @@
 package com.taskmanager.dao;
 
+import lombok.Getter;
+
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Objects;
 
+@Getter
 public class DatabaseConnector implements AutoCloseable{
     private static DatabaseConnector instance;
     private Connection connection;
@@ -31,10 +34,6 @@ public class DatabaseConnector implements AutoCloseable{
             instance = new DatabaseConnector();
         }
         return instance;
-    }
-
-    public Connection getConnection() {
-        return connection;
     }
 
     @Override
