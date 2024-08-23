@@ -1,9 +1,6 @@
 package com.taskmanager.servlets;
 
-import com.taskmanager.commands.Command;
-import com.taskmanager.commands.AddTaskCommand;
-import com.taskmanager.commands.DeleteTaskCommand;
-import com.taskmanager.commands.DisplayTasksCommand;
+import com.taskmanager.commands.*;
 
 import java.io.*;
 import java.util.HashMap;
@@ -23,6 +20,7 @@ public class ControllerServlet extends HttpServlet {
         commands = new HashMap<>();
         commands.put("addtask", new AddTaskCommand());
         commands.put("tasks", new DisplayTasksCommand());
+        commands.put("task", new DisplayTaskCommand());
         commands.put("deletetask", new DeleteTaskCommand());
     }
 
