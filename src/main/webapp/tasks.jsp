@@ -20,7 +20,7 @@
 <c:forEach var="task" items="${sessionScope.tasks}">
     <label>
         <input type="radio" name="id" value="${task.getId()}" form="foo">
-        <a href="http://localhost:8080/taskmanager/task?id=${task.getId()}">
+        <a href="/taskmanager/task?id=${task.getId()}">
             <c:out value="${task.getTitle()}"/>
         </a>
     </label>
